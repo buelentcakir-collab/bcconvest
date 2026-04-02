@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BC Convest GmbH — Consulting & Investments</title>
 <meta name="description" content="BC Convest is a Hamburg-based holding and advisory company investing in advertising technology, communications and AI.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23003366'/><text x='32' y='42' font-family='Verdana' font-weight='bold' font-size='28' fill='white' text-anchor='middle' letter-spacing='2'>BC</text></svg>">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -281,6 +282,20 @@
   }
   .portfolio-card:hover .card-num { color: rgba(255,255,255,0.06); font-size: 56px; }
 
+  /* Wide card for bottom item */
+  .portfolio-card-wide {
+    grid-column: 1 / -1;
+  }
+  .fund-portfolio {
+    margin-top: 14px;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    transition: color 0.4s ease;
+  }
+  .portfolio-card:hover .fund-portfolio { color: rgba(255,255,255,0.35); }
+
   /* ==================== APPROACH ==================== */
   .approach-section {
     background: var(--navy);
@@ -399,6 +414,152 @@
   footer a { color: var(--steel); text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: #FFF; }
 
+  /* ==================== FOUNDER ==================== */
+  .founder-section {
+    padding: 0;
+    background: var(--deep);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 480px;
+  }
+  .founder-section::before {
+    content: 'BC';
+    position: absolute;
+    font-size: 400px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.015);
+    letter-spacing: 20px;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+  .founder-photo-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.8);
+    transition: all 0.8s ease;
+  }
+  .founder-photo-wrap:hover .founder-photo {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.03);
+  }
+  .founder-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,20,40,0.6) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .founder-photo-label {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    z-index: 2;
+  }
+  .founder-photo-label .name {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+  }
+  .founder-photo-label .role {
+    font-size: 9px;
+    color: var(--steel);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .founder-text {
+    padding: 72px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .founder-text .section-label {
+    color: rgba(255,255,255,0.25);
+  }
+  .founder-text .section-label::before {
+    background: rgba(255,255,255,0.15);
+  }
+  .founder-quote {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    border-left: 3px solid var(--steel);
+    padding-left: 20px;
+  }
+  .founder-bio p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+  .founder-stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .founder-stat-num {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  .founder-stat-lbl {
+    font-size: 8px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  @media (max-width: 768px) {
+    .founder-section { grid-template-columns: 1fr; }
+    .founder-photo-wrap { min-height: 350px; }
+    .founder-text { padding: 48px 28px; }
+    .founder-quote { font-size: 17px; }
+  }
+
+  /* Approach watermark parallax */
+  .approach-section::before {
+    transform: translateY(var(--parallax, 0));
+    transition: transform 0.1s linear;
+  }
+
+  /* Logo badge entrance pulse */
+  @keyframes badgePulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Approach quote starts invisible for typing effect */
+  .approach-quote { opacity: 0; transition: none; }
+  .approach-section.visible .approach-quote,
+  .approach-quote[data-typed] { opacity: 1; }
+
+  /* Cursor blink after typing */
+  .approach-quote::after {
+    content: '|';
+    animation: blink 0.8s step-end infinite;
+    color: var(--steel);
+    font-weight: normal;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
   /* ==================== RESPONSIVE ==================== */
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -457,7 +618,7 @@
         <div class="hero-stat-label">Exits</div>
       </div>
       <div>
-        <div class="hero-stat-num" data-target="4">0</div>
+        <div class="hero-stat-num" data-target="5">0</div>
         <div class="hero-stat-label">Active</div>
       </div>
     </div>
@@ -477,21 +638,28 @@
       </div>
       <div class="portfolio-card reveal reveal-delay-2">
         <div class="card-num">02</div>
-        <h3>DEHAZE</h3>
-        <span class="card-tag">HealthTech</span>
-        <p>HealthTech startup focused on digital health solutions. BC Convest is an early-stage investor supporting go-to-market strategy and scaling.</p>
+        <h3>DANGEROUSLY.AI</h3>
+        <span class="card-tag">AI Taskforce / Enterprise</span>
+        <p>AI taskforce for enterprises. We automate processes, build custom AI agents and make companies dangerously competitive. Value-based billing only — we charge for results, not hours. Currently in founding.</p>
       </div>
       <div class="portfolio-card reveal reveal-delay-3">
         <div class="card-num">03</div>
-        <h3>AARNT BIOWORKS</h3>
-        <span class="card-tag">BioTech</span>
-        <p>BioTech company in the field of sustainable biological materials. Strategic investment focused on growth financing and network access.</p>
+        <h3>DEHAZE</h3>
+        <span class="card-tag">HealthTech</span>
+        <p>HealthTech scaleup focused on digital health solutions. Successfully transitioned from angel investment to seed round. BC Convest supported go-to-market strategy and scaling from day one.</p>
       </div>
       <div class="portfolio-card reveal reveal-delay-4">
         <div class="card-num">04</div>
+        <h3>AARNT BIOWORKS</h3>
+        <span class="card-tag">BioTech</span>
+        <p>BioTech infrastructure for agriculture in regulated markets. Strategic investment focused on growth financing, regulatory access and international network.</p>
+      </div>
+      <div class="portfolio-card portfolio-card-wide reveal">
+        <div class="card-num">05</div>
         <h3>AI.FUND</h3>
         <span class="card-tag">Venture / AI</span>
-        <p>Venture participation in building the "European AI Leaders". Investing in European AI companies to create a competitive alternative to US- and China-dominated AI ecosystems.</p>
+        <p>Co-investor for building the "European AI Leaders". Investing in European AI companies to create a competitive alternative to US- and China-dominated ecosystems.</p>
+        <div class="fund-portfolio">913.ai &middot; Allonia &middot; Dealcode &middot; Hirundo AI &middot; iPercept &middot; Mindpeak &middot; Sinpex &middot; VITAS</div>
       </div>
     </div>
   </div>
@@ -518,7 +686,7 @@
       <span class="track-years">2012 – 2026</span>
       <div class="track-content">
         <div class="track-name">klaro media GmbH</div>
-        <p class="track-desc">Built a specialized agency for data-driven, programmatic media planning and buying across international markets.</p>
+        <p class="track-desc">Scale and exit of specialized media agency in Germany for data-driven programmatic planning and buying with strong focus on creative agencies and public communication.</p>
         <span class="track-exit">Exit to Auctus Capital & MAI Group</span>
       </div>
     </div>
@@ -532,6 +700,45 @@
     </div>
   </div>
 </section>
+
+<!-- ==================== FOUNDER ==================== -->
+<div class="founder-section">
+  <div class="founder-photo-wrap">
+    <img src="https://acceleratorx.eu/wp-content/uploads/2026/04/bulent-cekir-1.jpg" alt="Bülent Cakir" class="founder-photo">
+    <div class="founder-photo-overlay"></div>
+    <div class="founder-photo-label">
+      <div class="name">Bülent Cakir</div>
+      <div class="role">Founder & Managing Director</div>
+    </div>
+  </div>
+  <div class="founder-text">
+    <div class="section-label reveal">Founder</div>
+    <div class="founder-quote reveal">"No network, no capital, no one who could open a door. What I had: an unreasonable amount of stubbornness."</div>
+    <div class="founder-bio reveal">
+      <p>Grew up in a Turkish working-class family in Germany. Three degrees — IT from Heidelberg/Hyderabad, eCommerce from Sydney, MBA from Hamburg. All summa cum laude. Strategy consulting at IBM before founding his first company.</p>
+      <p>upvalue, eComCon, klaro media — built, scaled, exited. Today running Sovereign Media across 27 countries and dangerously.ai as an enterprise AI taskforce. Heavily invested into AI funds and startups.</p>
+      <p>Raised four kids while building companies. Knows what it feels like when Friday night the account is tight and Monday morning payroll goes out.</p>
+    </div>
+    <div class="founder-stats reveal">
+      <div>
+        <div class="founder-stat-num">3</div>
+        <div class="founder-stat-lbl">Degrees</div>
+      </div>
+      <div>
+        <div class="founder-stat-num">3</div>
+        <div class="founder-stat-lbl">Companies Built</div>
+      </div>
+      <div>
+        <div class="founder-stat-num">2</div>
+        <div class="founder-stat-lbl">Exits</div>
+      </div>
+      <div>
+        <div class="founder-stat-num">27</div>
+        <div class="founder-stat-lbl">Countries</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ==================== FOOTER ==================== -->
 <footer>
@@ -601,6 +808,78 @@ heroRight.addEventListener('mousemove', (e) => {
     dot.style.transform = `translate(${x * depth}px, ${y * depth}px) scale(${dot.classList.contains('dot-1') ? 1 : 1})`;
   });
 });
+
+// Magnetic tilt on portfolio cards
+document.querySelectorAll('.portfolio-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `translateY(-6px) perspective(800px) rotateX(${y * -4}deg) rotateY(${x * 4}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0) perspective(800px) rotateX(0) rotateY(0)';
+  });
+});
+
+// Smooth parallax sections on scroll
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      // Approach section BC watermark parallax
+      const approach = document.querySelector('.approach-section');
+      if (approach) {
+        const rect = approach.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+          approach.style.setProperty('--parallax', `${(progress - 0.5) * 60}px`);
+        }
+      }
+      // Hero right panel slow drift
+      const heroRect = heroRight.getBoundingClientRect();
+      if (heroRect.bottom > 0) {
+        const drift = scrollY * 0.15;
+        heroRight.querySelector('.watermark').style.transform = `translate(-50%, calc(-50% + ${drift}px))`;
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Typing effect on approach quote
+const quoteEl = document.querySelector('.approach-quote');
+const quoteObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !quoteEl.dataset.typed) {
+      quoteEl.dataset.typed = '1';
+      const html = quoteEl.innerHTML;
+      quoteEl.innerHTML = '';
+      quoteEl.style.opacity = '1';
+      let i = 0;
+      function type() {
+        if (i < html.length) {
+          if (html.substring(i, i + 4) === '<br>') {
+            quoteEl.innerHTML += '<br>';
+            i += 4;
+          } else {
+            quoteEl.innerHTML += html[i];
+            i++;
+          }
+          setTimeout(type, 35);
+        }
+      }
+      type();
+    }
+  });
+}, { threshold: 0.5 });
+quoteObs.observe(quoteEl);
+
+// Logo badge pulse on load
+const badge = document.querySelector('.logo-badge');
+badge.style.animation = 'badgePulse 0.6s ease-out';
 </script>
 
 </body>
